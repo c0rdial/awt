@@ -1,0 +1,27 @@
+---
+import ContentNotice from './ContentNotice.astro';
+import { CategoryTabs, Ground, PageTitle, ProjectTile } from '../design-system/components';
+import type { Project } from '../lib/sanity';
+
+interface Props { projects: Project[]; category: 'residential' | 'commercial' }
+const { projects, category } = Astro.props;
+const tabs = [
+  { label: 'Residential', href: '/projects' },
+  { label: 'Commercial/ Hospitality', href: '/projects/commercial' },
+];
+const active = category === 'residential' ? tabs[0].label : tabs[1].label;
+const visible = projects.filter((project) => project.category === category);
+---
+<Ground ground="project" className="page projects">
+  <div class="page-inner">
+    <div class="projects__head">
+      <PageTitle title="Project" />
+      <CategoryTabs items={tabs} active={active} />
+    </div>
+    <div class="projects__mat">
+      {visible.length ? <div class="projects__grid">
+        {visible.map((project) => <ProjectTile title={project.title} href={`/projects/${project.slug}`} image={project.cover} color={project.loadingColor} comingSoon={project.comingSoon} />)}
+      </div> : <ContentNotice kind={`${active} projects`} />}
+    </div>
+  </div>
+</Ground>

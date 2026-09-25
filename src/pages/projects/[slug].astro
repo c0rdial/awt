@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { PortableCopy } from '../../components/PortableCopy';
+import { Ground, PageTitle } from '../../design-system/components';
+import { getProjects, type Project } from '../../lib/sanity';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.filter((project) => project.slug).map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+interface Props { project: Project }
+const { project } = Astro.props;
+const facts = [
+  ['Year', project.year],
+  ['Location', project.location],
+  ['Area', project.area],
+  ['Scope', project.scope],
+].filter(([, value]) => value);
+---
+<BaseLayout title={project.title} ground="project" active="Project">
+  <Ground ground="project" className="page">
+    <div class="page-inner">
+      <a class="project-back t-small" href="/projects">All projects</a>
+      <div class="project-detail">
+        {project.cover && <img class="project-detail__image" src={project.cover} alt={project.coverAlt || project.title} />}
+        <div>
+          <PageTitle title={project.title} />
+          {facts.length > 0 && <dl class="project-detail__facts t-small">{facts.map(([label, value]) => <><dt>{label}</dt><dd>{value}</dd></>)}</dl>}
+          {project.description?.length && <div class="t-body"><PortableCopy value={project.description} /></div>}
+        </div>
+      </div>
+    </div>
+  </Ground>
+</BaseLayout>

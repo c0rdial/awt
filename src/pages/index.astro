@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Ground, Logo } from '../design-system/components';
+import { getSettings } from '../lib/sanity';
+
+const settings = await getSettings();
+const hero = settings?.heroImage || '/brand/images/entrance-courtyard-render.jpg';
+---
+<BaseLayout title="Home" ground="home" active="Home">
+  <Ground ground="home" className="page home">
+    <div class="home__hero">
+      <img class="home__image" src={hero} alt={settings?.heroAlt || 'Studio architecture render of a tropical courtyard'} />
+      <div class="home__identity">
+        <Logo variant="primary" ink="sage" height={100} />
+        {settings?.tagline && <p class="home__tagline t-tagline">{settings.tagline}</p>}
+      </div>
+    </div>
+  </Ground>
+</BaseLayout>

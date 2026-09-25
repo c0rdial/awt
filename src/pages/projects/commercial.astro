@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectListing from '../../components/ProjectListing.astro';
+import { getProjects } from '../../lib/sanity';
+const projects = await getProjects();
+---
+<BaseLayout title="Commercial projects" ground="project" active="Project">
+  <ProjectListing projects={projects} category="commercial" />
+</BaseLayout>

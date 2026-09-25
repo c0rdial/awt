@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Bellefair&display=swap");
+
+/* Components for a [working title] studio. Load after tokens.css. Everything here works without client-side JavaScript. */
+
+/* Grounds: one solid color per website page, with the text ink that passes on it. */
+.awt-ground { font-family: var(--font-sans); color: var(--awt-ink); background: var(--awt-bg); --awt-ink: var(--white); --awt-bg: var(--ground-home); }
+.awt-ground[data-ground="home"]      { --awt-bg: var(--ground-home);      --awt-ink: var(--white); }
+.awt-ground[data-ground="about"]     { --awt-bg: var(--ground-about);     --awt-ink: var(--white); }
+.awt-ground[data-ground="project"]   { --awt-bg: var(--ground-project);   --awt-ink: var(--forest); }
+.awt-ground[data-ground="inquire"]   { --awt-bg: var(--ground-inquire);   --awt-ink: var(--white); }
+.awt-ground[data-ground="instagram"] { --awt-bg: var(--ground-instagram); --awt-ink: var(--white); }
+.awt-ground[data-ground="mint"]      { --awt-bg: var(--mint);             --awt-ink: var(--plum); }
+
+.awt-upper { text-transform: uppercase; }
+
+/* Logo */
+.awt-logo { display: block; height: auto; }
+
+/* SiteNav: logo in the top-left corner, five uppercase links, always visible */
+.awt-nav { position: sticky; top: 0; z-index: 10; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: var(--space-page); padding: var(--space-footer) var(--space-page); background: var(--awt-bg); color: var(--awt-ink); }
+.awt-nav__links { display: flex; justify-content: space-between; gap: var(--space-gutter); margin: 0; padding: 0; list-style: none; }
+.awt-nav__link { font-size: 20px; line-height: 23px; font-weight: 400; text-transform: uppercase; color: inherit; text-decoration: none; padding-bottom: 2px; border-bottom: var(--stroke-hairline) solid transparent; }
+.awt-nav__link:hover, .awt-nav__link[aria-current="page"] { border-bottom-color: currentColor; }
+.awt-nav a:focus-visible, .awt-tabs__tab:focus-visible, .awt-contact a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+/* PageTitle */
+.awt-title { margin: 0; font-size: 42px; line-height: 48px; font-weight: 400; text-transform: uppercase; }
+.awt-title__sub { margin: var(--space-gutter) 0 0; font-size: 20px; line-height: 23px; font-weight: 400; text-transform: uppercase; }
+.awt-title__tagline { margin: var(--space-inset) 0 0; font-size: 16px; line-height: 18px; text-transform: uppercase; }
+
+/* ServiceCard: image beside a bold uppercase title and short copy */
+.awt-service { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--space-card); align-items: start; }
+.awt-service--reverse .awt-service__media { order: 2; }
+.awt-service__media { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-none); }
+.awt-service__title { margin: 0 0 var(--space-gutter); font-size: 14px; line-height: 16px; font-weight: 500; text-transform: uppercase; }
+.awt-service__body { margin: 0; font-size: 10px; line-height: 16px; }
+
+/* CategoryTabs */
+.awt-tabs { display: flex; gap: var(--space-page); }
+.awt-tabs { margin: 0; padding: 0; list-style: none; }
+.awt-tabs__tab { display: inline-block; padding: 0 0 2px; font-size: 20px; line-height: 23px; text-transform: uppercase; color: var(--awt-ink); text-decoration: none; border-bottom: var(--stroke-hairline) solid transparent; }
+.awt-tabs__tab:hover, .awt-tabs__tab[aria-current="page"] { border-bottom-color: currentColor; }
+
+/* ProjectTile: a solid project color that slides up to reveal the photo */
+.awt-tile { display: block; color: inherit; text-decoration: none; }
+.awt-tile__frame { position: relative; display: block; overflow: hidden; aspect-ratio: 3 / 4; background: var(--white); outline: var(--stroke-outline) solid transparent; outline-offset: 0; border-radius: var(--radius-outline); }
+.awt-tile__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.awt-tile__veil { position: absolute; inset: 0; background: var(--awt-tile-color, var(--project-ivory)); transform: translateY(0); transition: transform 600ms cubic-bezier(.2, .7, .2, 1); }
+.awt-tile:hover .awt-tile__veil, .awt-tile:focus-visible .awt-tile__veil, .awt-tile[data-revealed="true"] .awt-tile__veil { transform: translateY(-100%); }
+.awt-tile:hover .awt-tile__frame, .awt-tile:focus-visible .awt-tile__frame { outline-color: var(--focus); }
+.awt-tile:focus-visible { outline: none; }
+.awt-tile__caption { display: block; margin-top: var(--space-grid); font-size: 10px; line-height: 16px; }
+.awt-tile__soon { position: absolute; inset: auto 0 50% 0; text-align: center; font-size: 10px; line-height: 16px; color: var(--white); }
+@media (prefers-reduced-motion: reduce) { .awt-tile__veil { transition: opacity 200ms linear; } .awt-tile:hover .awt-tile__veil, .awt-tile:focus-visible .awt-tile__veil, .awt-tile[data-revealed="true"] .awt-tile__veil { transform: none; opacity: 0; } }
+
+/* ContactList */
+.awt-contact { margin: 0; display: grid; gap: var(--space-gutter); }
+.awt-contact__item { margin: 0; }
+.awt-contact dt { font-size: 16px; line-height: 21px; font-weight: 500; }
+.awt-contact dd { margin: 0; font-size: 16px; line-height: 21px; font-weight: 300; }
+.awt-contact a { color: inherit; text-decoration: underline; text-decoration-thickness: var(--stroke-hairline); text-underline-offset: 2px; }
+
+/* Bracket: an accent word in Bellefair italic, framed in square brackets */
+.awt-bracket { font-family: var(--font-accent); font-style: italic; font-size: 1.15em; text-transform: uppercase; white-space: nowrap; }

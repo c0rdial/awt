@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentNotice from '../components/ContentNotice.astro';
+import { ContactList, Ground, PageTitle } from '../design-system/components';
+import { getSettings } from '../lib/sanity';
+
+const settings = await getSettings();
+const contacts = [
+  ...(settings?.email ? [{ label: 'Email', value: settings.email, href: `mailto:${settings.email}` }] : []),
+  ...(settings?.instagram ? [{ label: 'Instagram', value: settings.instagram, href: `https://instagram.com/${settings.instagram.replace(/^@/, '')}` }] : []),
+  ...(settings?.whatsapp || []).map((person) => ({ label: person.name || 'WhatsApp', value: person.number || '', href: `https://wa.me/${(person.number || '').replace(/\D/g, '')}` })),
+  ...(settings?.visitNote ? [{ label: 'Visit us', value: settings.visitNote }] : []),
+];
+---
+<BaseLayout title="Inquire" ground="inquire" active="Inquire">
+  <Ground ground="inquire" className="page inquire">
+    <div class="page-inner">
+      <PageTitle title="Inquiry" subtitle="How to contact us" />
+      <div class="inquire__body">
+        <div class="inquire__lead t-body">
+          {settings?.email ? <><p>Tell us about the space you have in mind.</p><a class="inquire__email t-subheading" href={`mailto:${settings.email}?subject=Project%20inquiry`}>Write an email</a></> : <ContentNotice kind="Contact details" />}
+        </div>
+        {contacts.length > 0 && <ContactList items={contacts} />}
+      </div>
+    </div>
+  </Ground>
+</BaseLayout>

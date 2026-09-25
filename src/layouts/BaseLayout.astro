@@ -1,0 +1,37 @@
+---
+import { SiteNav } from '../design-system/components';
+import '../design-system/styles/tokens.css';
+import '../design-system/styles/components.css';
+import '../styles/site.css';
+import type { Ground } from '../design-system/tokens';
+
+interface Props {
+  title: string;
+  description?: string;
+  ground: Ground;
+  active: string;
+}
+
+const { title, description = 'A working title studio: architecture, interiors, decoration and styling in Ubud, Bali.', ground, active } = Astro.props;
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Project', href: '/projects' },
+  { label: 'Inquire', href: '/inquire' },
+  { label: 'Instagram', href: '/instagram' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/brand/logos/awt-secondary-forest.svg" type="image/svg+xml" />
+    <title>{title} | a [working title] studio</title>
+  </head>
+  <body>
+    <SiteNav ground={ground} active={active} items={navItems} />
+    <slot />
+  </body>
+</html>

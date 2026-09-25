@@ -1,0 +1,62 @@
+:root {
+  /* Color: brand palette (brand guide), project colors (website deck), page grounds */
+  --forest: #25543f;
+  --plum: #59293e;
+  --sage: #c9d9b4;
+  --brown: #7e5525;
+  --olive: #666438;
+  --lavender: #a59dd4;
+  --blue: #8fa1d8;
+  --mint: #dff2c7;
+  --ink: #231f20;
+  --white: #ffffff;
+  --project-lilac: #dcaedd;
+  --project-ivory: #fdfff2;
+  --project-butter: #efdc9a;
+  --project-blush: #f2b9a8;
+  --project-taupe: #bbb4ae;
+  --ground-home: var(--forest);
+  --ground-about: var(--plum);
+  --ground-project: var(--sage);
+  --ground-inquire: var(--brown);
+  --ground-instagram: var(--olive);
+  --focus: var(--forest);
+
+  /* Type families */
+  --font-sans: "Neue Haas Grotesk Display Pro", "Neue Haas Grotesk Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "GT America Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-accent: Bellefair, Fligen, Georgia, serif;
+
+  /* Spacing, radius, stroke */
+  --space-grid: 8px;
+  --space-inset: 16px;
+  --space-card: 20px;
+  --space-gutter: 24px;
+  --space-footer: 36px;
+  --space-page: 45px;
+  --space-header: 84px;
+  --radius-none: 0;
+  --radius-outline: 3px;
+  --radius-round: 50%;
+  --stroke-hairline: 1px;
+  --stroke-outline: 5px;
+}
+
+/* Text styles: one class per style in the brand guide / website deck */
+.t-page-title { font-family: var(--font-sans); font-size: 42px; line-height: 48px; font-weight: 400; text-transform: uppercase; }  /* One per page, uppercase: ABOUT, INQUIRY. */
+.t-nav { font-family: var(--font-sans); font-size: 20px; line-height: 23px; font-weight: 400; text-transform: uppercase; }  /* The always-visible menu, uppercase. */
+.t-subheading { font-family: var(--font-sans); font-size: 20px; line-height: 23px; font-weight: 400; text-transform: uppercase; }  /* Section headings under the page title and the project category tabs, uppercase. */
+.t-tagline { font-family: var(--font-sans); font-size: 16px; line-height: 18px; font-weight: 400; text-transform: uppercase; }  /* The services line under the wordmark and titles, uppercase. */
+.t-card-title { font-family: var(--font-sans); font-size: 14px; line-height: 16px; font-weight: 500; text-transform: uppercase; }  /* Service and project titles, uppercase. Medium is the brand's 65 weight; the deck drew it in Helvetica Bold. */
+.t-body { font-family: var(--font-sans); font-size: 13px; line-height: 21px; font-weight: 400; text-transform: uppercase; }  /* Philosophy and about copy, uppercase, centered in its column. */
+.t-small { font-family: var(--font-sans); font-size: 10px; line-height: 16px; font-weight: 400; }  /* Service descriptions and project captions. */
+.t-contact-label { font-family: var(--font-sans); font-size: 16px; line-height: 21px; font-weight: 500; }  /* Contact block labels, sentence case. */
+.t-contact-value { font-family: var(--font-sans); font-size: 16px; line-height: 21px; font-weight: 300; }  /* Contact block values and the visit note, sentence case. */
+.t-index-numeral { font-family: var(--font-sans); font-size: 60px; line-height: 66px; font-weight: 400; }  /* Numbered index rows, in lavender (guide page 3). */
+.t-index-title { font-family: var(--font-mono); font-size: 60px; line-height: 66px; font-weight: 100; }  /* Titles beside index numerals (guide page 3). */
+.t-mono-body { font-family: var(--font-mono); font-size: 18px; line-height: 21.5px; font-weight: 100; }  /* Section labels and explanatory paragraphs in presentations and the guide. */
+.t-mono-caption { font-family: var(--font-mono); font-size: 10.5px; line-height: 13px; font-weight: 100; }  /* Annotations and callouts. */
+.t-footer { font-family: var(--font-sans); font-size: 14px; line-height: 17px; font-weight: 400; }  /* Running footer strip: studio name, document, section, page number. */
+.t-card-name { font-family: var(--font-sans); font-size: 14px; line-height: 16px; font-weight: 500; }  /* Person's name on business cards and signatures. */
+.t-card-text { font-family: var(--font-sans); font-size: 12.5px; line-height: 16px; font-weight: 400; }  /* Business card details and the disciplines line. */
+.t-bracket { font-family: var(--font-accent); font-size: 15px; line-height: 18px; font-weight: 400; font-style: italic; }  /* Bracketed key words inside uppercase copy: [JOY], [INSIDE] - [OUT]. Use the Bracket component. */

@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentNotice from '../components/ContentNotice.astro';
+import { PortableCopy } from '../components/PortableCopy';
+import { Ground, PageTitle, ServiceCard } from '../design-system/components';
+import { getServices, getSettings } from '../lib/sanity';
+
+const [settings, services] = await Promise.all([getSettings(), getServices()]);
+const image = settings?.aboutImage || '/brand/images/utara-studio-interior-render.jpg';
+---
+<BaseLayout title="About" ground="about" active="About">
+  <Ground ground="about" className="page about">
+    <div class="page-inner">
+      <PageTitle title="About" subtitle="Our philosophies" />
+      <div class="about__intro">
+        <div class="about__copy t-body">
+          {settings?.philosophy?.length ? <PortableCopy value={settings.philosophy} /> : <ContentNotice kind="Studio philosophy" />}
+        </div>
+        <img class="about__image" src={image} alt={settings?.aboutAlt || 'Warm interior render by the studio'} />
+      </div>
+      {services.length ? <div class="about__services">
+        {services.map((service, index) => <ServiceCard title={service.title} image={service.image || '/brand/images/two-storey-architecture-render.jpg'} imageAlt={service.imageAlt || service.title} reverse={index % 2 === 1}>{service.body}</ServiceCard>)}
+      </div> : <ContentNotice kind="Services" />}
+    </div>
+  </Ground>
+</BaseLayout>

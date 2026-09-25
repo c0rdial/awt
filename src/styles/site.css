@@ -1,0 +1,55 @@
+* { box-sizing: border-box; }
+html { min-width: 320px; }
+body { margin: 0; font-family: var(--font-sans); }
+img { max-width: 100%; }
+a { color: inherit; }
+.page { min-height: calc(100svh - var(--nav-height)); padding: var(--space-inset) var(--space-page) var(--space-footer); }
+.page-inner { max-width: var(--content-max); margin-inline: auto; }
+.home { display: grid; place-items: center; padding: var(--space-inset); }
+.home__hero { position: relative; width: 100%; min-height: var(--hero-height); display: grid; place-items: center; overflow: hidden; }
+.home__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.home__identity { position: relative; z-index: 1; display: grid; justify-items: center; gap: var(--space-gutter); width: min(80%, var(--wordmark-max)); }
+.home__identity .awt-logo { width: 100% !important; height: auto !important; }
+.home__tagline { margin: 0; text-align: center; color: var(--white); }
+.about__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-page); align-items: center; margin-block: var(--space-page) var(--space-header); }
+.about__copy { max-width: var(--copy-max); text-align: center; margin-inline: auto; }
+.about__copy p { margin-block: 0 var(--space-gutter); }
+.about__image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.about__services { display: grid; gap: var(--space-header); }
+.projects__head { display: flex; justify-content: space-between; align-items: end; gap: var(--space-page); margin-bottom: var(--space-page); }
+.projects__mat { background: var(--white); color: var(--ink); padding: var(--space-gutter); }
+.projects__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-grid); }
+.project-detail { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--space-page); align-items: start; }
+.project-detail__image { width: 100%; max-height: var(--detail-height); object-fit: cover; }
+.project-detail__facts { display: grid; grid-template-columns: auto 1fr; gap: var(--space-grid) var(--space-gutter); margin-block: var(--space-page); }
+.project-detail__facts dt { font-weight: 500; }
+.project-detail__facts dd { margin: 0; }
+.inquire__body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-page); align-items: end; margin-top: var(--space-header); }
+.inquire__lead { max-width: var(--copy-max); }
+.inquire__email { display: inline-block; margin-top: var(--space-page); border-bottom: var(--stroke-hairline) solid currentColor; text-decoration: none; }
+.inquire__email:focus-visible, .instagram__grid a:focus-visible, .project-back:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.instagram__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-grid); margin-top: var(--space-page); }
+.instagram__grid img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.content-note { margin-block: var(--space-page); max-width: var(--copy-max); }
+.content-note a { text-underline-offset: 0.2em; }
+.project-back { display: inline-block; margin-bottom: var(--space-page); }
+@media (max-width: 900px) {
+  .awt-nav { grid-template-columns: 1fr; gap: var(--space-gutter); }
+  .awt-nav__links { flex-wrap: wrap; justify-content: flex-start; }
+  .projects__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .instagram__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .awt-nav { padding: var(--space-inset); }
+  .awt-nav__links { gap: var(--space-inset); }
+  .awt-nav__link { font-size: var(--mobile-nav-size); line-height: 1.3; }
+  .page { padding-inline: var(--space-inset); }
+  .home { padding: 0; }
+  .home__hero { min-height: calc(100svh - var(--mobile-nav-height)); }
+  .about__intro, .inquire__body, .project-detail { grid-template-columns: 1fr; }
+  .projects__head { display: block; }
+  .projects__head .awt-tabs { margin-top: var(--space-gutter); flex-wrap: wrap; gap: var(--space-inset); }
+  .projects__grid, .instagram__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .awt-service, .awt-service--reverse { grid-template-columns: 1fr; }
+  .awt-service--reverse .awt-service__media { order: initial; }
+}
