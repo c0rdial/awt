@@ -8,7 +8,7 @@ const settings = await getSettings();
 const contacts = [
   ...(settings?.email ? [{ label: 'Email', value: settings.email, href: `mailto:${settings.email}` }] : []),
   ...(settings?.instagram ? [{ label: 'Instagram', value: settings.instagram, href: `https://instagram.com/${settings.instagram.replace(/^@/, '')}` }] : []),
-  ...(settings?.whatsapp || []).map((person) => ({ label: person.name || 'WhatsApp', value: person.number || '', href: `https://wa.me/${(person.number || '').replace(/\D/g, '')}` })),
+  ...(settings?.whatsapp || []).filter((person) => person.number && /\d/.test(person.number)).map((person) => ({ label: person.name || 'WhatsApp', value: person.number || '', href: `https://wa.me/${(person.number || '').replace(/\D/g, '')}` })),
   ...(settings?.visitNote ? [{ label: 'Visit us', value: settings.visitNote }] : []),
 ];
 ---

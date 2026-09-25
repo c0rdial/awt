@@ -9,6 +9,7 @@ a { color: inherit; }
 .home__hero { position: relative; width: 100%; min-height: var(--hero-height); display: grid; place-items: center; overflow: hidden; }
 .home__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .home__identity { position: relative; z-index: 1; display: grid; justify-items: center; gap: var(--space-gutter); width: min(80%, var(--wordmark-max)); }
+.home__wordmark { width: 100%; margin: 0; }
 .home__identity .awt-logo { width: 100% !important; height: auto !important; }
 .home__tagline { margin: 0; text-align: center; color: var(--white); }
 .about__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-page); align-items: center; margin-block: var(--space-page) var(--space-header); }
@@ -21,6 +22,8 @@ a { color: inherit; }
 .projects__grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-grid); }
 .project-detail { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--space-page); align-items: start; }
 .project-detail__image { width: 100%; max-height: var(--detail-height); object-fit: cover; }
+.project-detail__gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-grid); margin-top: var(--space-page); }
+.project-detail__gallery img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .project-detail__facts { display: grid; grid-template-columns: auto 1fr; gap: var(--space-grid) var(--space-gutter); margin-block: var(--space-page); }
 .project-detail__facts dt { font-weight: 500; }
 .project-detail__facts dd { margin: 0; }
@@ -47,6 +50,7 @@ a { color: inherit; }
   .home { padding: 0; }
   .home__hero { min-height: calc(100svh - var(--mobile-nav-height)); }
   .about__intro, .inquire__body, .project-detail { grid-template-columns: 1fr; }
+  .project-detail__gallery { grid-template-columns: 1fr; }
   .projects__head { display: block; }
   .projects__head .awt-tabs { margin-top: var(--space-gutter); flex-wrap: wrap; gap: var(--space-inset); }
   .projects__grid, .instagram__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

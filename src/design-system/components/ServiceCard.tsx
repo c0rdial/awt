@@ -18,7 +18,7 @@ export function ServiceCard({ title, image, imageAlt, reverse, children, classNa
       <img className="awt-service__media" src={image} alt={imageAlt} loading="lazy" />
       <div>
         <h3 className="awt-service__title">{title}</h3>
-        <p className="awt-service__body">{children}</p>
+        <div className="awt-service__body">{children}</div>
       </div>
     </article>
   );

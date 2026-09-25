@@ -6,3 +6,4 @@ dist-studio/
 .env.*.local
 .sanity/
 .DS_Store
+.vercel/

@@ -50,7 +50,8 @@
 .awt-tile:hover .awt-tile__frame, .awt-tile:focus-visible .awt-tile__frame { outline-color: var(--focus); }
 .awt-tile:focus-visible { outline: none; }
 .awt-tile__caption { display: block; margin-top: var(--space-grid); font-size: 10px; line-height: 16px; }
-.awt-tile__soon { position: absolute; inset: auto 0 50% 0; text-align: center; font-size: 10px; line-height: 16px; color: var(--white); }
+.awt-tile__soon { position: absolute; inset: 50% 0 auto; text-align: center; transform: translateY(-50%); font-size: 10px; line-height: 16px; color: var(--plum); }
+@media (hover: none) { .awt-tile__veil { transform: translateY(-100%); } }
 @media (prefers-reduced-motion: reduce) { .awt-tile__veil { transition: opacity 200ms linear; } .awt-tile:hover .awt-tile__veil, .awt-tile:focus-visible .awt-tile__veil, .awt-tile[data-revealed="true"] .awt-tile__veil { transform: none; opacity: 0; } }
 
 /* ContactList */

@@ -1,12 +1,9 @@
 import { createClient } from '@sanity/client';
 
-const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'pbnloqtf';
 const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production';
 
-export const hasSanity = Boolean(projectId && projectId !== 'your-project-id');
-export const sanity = hasSanity
-  ? createClient({ projectId, dataset, apiVersion: '2026-03-01', useCdn: true })
-  : null;
+export const sanity = createClient({ projectId, dataset, apiVersion: '2026-03-01', useCdn: true });
 
 export interface PortableBlock {
   _type: string;
@@ -31,7 +28,7 @@ export interface SiteSettings {
 export interface Service {
   _id: string;
   title: string;
-  body?: string;
+  body?: PortableBlock[];
   image?: string;
   imageAlt?: string;
 }
@@ -60,27 +57,18 @@ export interface InstagramPost {
   url?: string;
 }
 
-async function fetchContent<T>(query: string, fallback: T, params?: Record<string, string>): Promise<T> {
-  if (!sanity) return fallback;
-  return sanity.fetch<T>(query, params ?? {});
-}
-
-export const getSettings = () => fetchContent<SiteSettings | null>(
-  `*[_type == "siteSettings"][0]{tagline,"heroImage":heroImage.asset->url,"heroAlt":heroImage.alt,philosophy,"aboutImage":aboutImage.asset->url,"aboutAlt":aboutImage.alt,instagram,email,whatsapp,visitNote}`,
-  null,
+export const getSettings = () => sanity.fetch<SiteSettings | null>(
+  `*[_type == "siteSettings"]|order(_updatedAt desc)[0]{tagline,"heroImage":heroImage.asset->url,"heroAlt":heroImage.alt,philosophy,"aboutImage":aboutImage.asset->url,"aboutAlt":aboutImage.alt,instagram,email,whatsapp,visitNote}`,
 );
 
-export const getServices = () => fetchContent<Service[]>(
+export const getServices = () => sanity.fetch<Service[]>(
   `*[_type == "service"]|order(order asc,title asc){_id,title,body,"image":image.asset->url,"imageAlt":image.alt}`,
-  [],
 );
 
-export const getProjects = () => fetchContent<Project[]>(
-  `*[_type == "project"]|order(order asc,title asc){_id,title,"slug":slug.current,category,loadingColor,"cover":cover.asset->url,"coverAlt":cover.alt,comingSoon,year,location,area,scope,description,"gallery":gallery[]{"url":asset->url,alt}}`,
-  [],
+export const getProjects = () => sanity.fetch<Project[]>(
+  `*[_type == "project" && defined(slug.current) && defined(category)]|order(order asc,title asc){_id,title,"slug":slug.current,category,loadingColor,"cover":cover.asset->url,"coverAlt":cover.alt,comingSoon,year,location,area,scope,description,"gallery":gallery[]{"url":asset->url,alt}}`,
 );
 
-export const getInstagramPosts = () => fetchContent<InstagramPost[]>(
-  `*[_type == "instagramPost"]|order(publishedAt desc)[0...12]{_id,"image":image.asset->url,"alt":image.alt,url}`,
-  [],
+export const getInstagramPosts = () => sanity.fetch<InstagramPost[]>(
+  `*[_type == "instagramPost" && defined(image.asset) && defined(url)]|order(publishedAt desc)[0...12]{_id,"image":image.asset->url,"alt":image.alt,url}`,
 );

@@ -19,7 +19,7 @@ const image = settings?.aboutImage || '/brand/images/utara-studio-interior-rende
         <img class="about__image" src={image} alt={settings?.aboutAlt || 'Warm interior render by the studio'} />
       </div>
       {services.length ? <div class="about__services">
-        {services.map((service, index) => <ServiceCard title={service.title} image={service.image || '/brand/images/two-storey-architecture-render.jpg'} imageAlt={service.imageAlt || service.title} reverse={index % 2 === 1}>{service.body}</ServiceCard>)}
+        {services.map((service, index) => <ServiceCard title={service.title} image={service.image || '/brand/images/two-storey-architecture-render.jpg'} imageAlt={service.imageAlt || service.title} reverse={index % 2 === 1}>{service.body?.length ? <PortableCopy value={service.body} /> : null}</ServiceCard>)}
       </div> : <ContentNotice kind="Services" />}
     </div>
   </Ground>

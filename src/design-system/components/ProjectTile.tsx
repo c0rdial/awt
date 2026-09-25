@@ -18,13 +18,12 @@ export interface ProjectTileProps {
 export function ProjectTile({ title, href, image, color = "ivory", comingSoon, revealed, className }: ProjectTileProps) {
   const style = { "--awt-tile-color": `var(--project-${color})` } as CSSProperties;
   return (
-    <a className={["awt-tile", className].filter(Boolean).join(" ")} href={href} data-revealed={revealed ? "true" : undefined} style={style}>
+    <a className={["awt-tile", className].filter(Boolean).join(" ")} href={href} aria-label={comingSoon ? `${title}, coming soon` : undefined} data-revealed={revealed ? "true" : undefined} style={style}>
       <span className="awt-tile__frame">
         {image && <img className="awt-tile__img" src={image} alt="" loading="lazy" />}
-        {comingSoon && <span className="awt-tile__soon">coming soon</span>}
-        <span className="awt-tile__veil" aria-hidden="true" />
+        <span className="awt-tile__veil" aria-hidden="true">{comingSoon && <span className="awt-tile__soon">coming soon</span>}</span>
       </span>
-      <span className="awt-tile__caption">{title}</span>
+      <span className="awt-tile__caption">{title}{comingSoon && <span> — coming soon</span>}</span>
     </a>
   );
 }

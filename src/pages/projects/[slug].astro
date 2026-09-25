@@ -30,6 +30,9 @@ const facts = [
           {project.description?.length && <div class="t-body"><PortableCopy value={project.description} /></div>}
         </div>
       </div>
+      {project.gallery?.some((image) => image.url) && <div class="project-detail__gallery">
+        {project.gallery.filter((image) => image.url).map((image) => <img src={image.url} alt={image.alt || project.title} loading="lazy" />)}
+      </div>}
     </div>
   </Ground>
 </BaseLayout>

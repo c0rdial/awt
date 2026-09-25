@@ -9,7 +9,7 @@ export interface CategoryTabsProps {
 }
 
 const DEFAULT_TABS: CategoryTab[] = [
-  { label: "Residential", href: "/projects/residential" },
+  { label: "Residential", href: "/projects" },
   { label: "Commercial/ Hospitality", href: "/projects/commercial" },
 ];
 

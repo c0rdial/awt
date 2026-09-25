@@ -8,7 +8,7 @@ export const service = defineType({
   fields: [
     defineField({ name: "title", type: "string", description: "Architecture, Interior design, Decoration, Styling", validation: (r) => r.required() }),
     defineField({ name: "image", type: "image", options: { hotspot: true }, fields: [defineField({ name: "alt", type: "string", validation: (r) => r.required() })] }),
-    defineField({ name: "body", type: "text", rows: 4, validation: (r) => r.max(280).warning("Keep it short: the site avoids long scrolling.") }),
+    defineField({ name: "body", type: "portableText", description: "Keep it short. Use the Bracket mark on one or two key words." }),
     defineField({ name: "order", type: "number" }),
   ],
 });

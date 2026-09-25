@@ -11,7 +11,7 @@ const hero = settings?.heroImage || '/brand/images/entrance-courtyard-render.jpg
     <div class="home__hero">
       <img class="home__image" src={hero} alt={settings?.heroAlt || 'Studio architecture render of a tropical courtyard'} />
       <div class="home__identity">
-        <Logo variant="primary" ink="sage" height={100} />
+        <h1 class="home__wordmark"><Logo variant="primary" ink="sage" height={100} /></h1>
         {settings?.tagline && <p class="home__tagline t-tagline">{settings.tagline}</p>}
       </div>
     </div>
