@@ -5,4 +5,8 @@ export default defineCliConfig({
     projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'pbnloqtf',
     dataset: process.env.SANITY_STUDIO_DATASET || 'production',
   },
+  studioHost: 'awt-studio',
+  deployment: {
+    appId: 'netavmeacf44wg1jjcexgpcq',
+  },
 });

@@ -7,3 +7,4 @@ dist-studio/
 .sanity/
 .DS_Store
 .vercel/
+.vercel
